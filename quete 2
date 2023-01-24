@@ -1,0 +1,42 @@
+// <reference types="cypress" />
+import { faker } from '@faker-js/faker';
+
+
+       // *email: faker.internet.email(),
+        //password: faker.internet.password(),//
+  
+describe ('authentification à backmarket', () =>
+{
+    it ('inscription réussie',()=>
+    {
+        cy.visit ('https://preprod.backmarket.fr/register') 
+        cy.contains ('OK pour moi').click()
+        cy.get ('#firstName').type ('Fatma')
+        cy.get ('#lastName').type ('Salah')
+        cy.get ('#signup-email').type ('salahfattma88@yahoo.com')
+        cy.get ('#signin-password').type ('FidaEla88@')
+        cy.get ('._2OVE0h6V').click()
+    }
+    )
+    it ('inscription échouée',()=>
+    {
+        cy.visit ('https://preprod.backmarket.fr/register') 
+        cy.contains ('OK pour moi').click()
+        cy.get ('#firstName').type ('Fatma')
+        cy.get ('#lastName').type ('Salah')
+        cy.get ('#signup-email').type ('salahfattma@yahoo.com')
+        cy.get ('#signin-password').type ('12')
+        cy.get ('._2OVE0h6V').click()  
+    }
+    )
+    it('autehntification', () =>
+    {
+       
+       cy.visit ('https://preprod.backmarket.fr/register')
+       cy.contains ('OK pour moi').click()
+       cy.get ('#signin-email').type (faker.internet.email())
+       cy.get ('#signin-password').type (faker.internet.password())
+       cy.contains ('Welcome Back').click()
+       
+    })
+})
